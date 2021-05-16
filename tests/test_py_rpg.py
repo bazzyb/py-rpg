@@ -1,3 +1,4 @@
+import pytest
 from py_rpg import Character
 
 
@@ -14,12 +15,21 @@ class TestCharacter:
 
 
 class TestCombat:
-    character = Character()
-    experienced_character = Character(max_health=3000, level=10)
+    @pytest.fixture(autouse=True)
+    def _prep_characters(self):
+        self.character = Character()
+        self.experienced_character = Character(max_health=3000, level=10)
+        self.injured_character = Character(max_health=100)
 
-    opponent = Character()
-    experienced_opponent = Character(max_health=3000, level=10)
+        self.opponent = Character()
+        self.experienced_opponent = Character(max_health=3000, level=10)
+        self.injured_opponent = Character(max_health=100)
 
     def test_opponent_should_have_900_health_after_attack(self):
         self.character.attack(self.opponent)
         assert self.opponent.get_health() == 900
+
+    def test_opponent_should_die_if_attack_exceeds_health(self):
+        self.character.attack(self.injured_opponent)
+        assert self.injured_opponent.get_health() == 0
+        assert self.injured_opponent.is_alive() is False
