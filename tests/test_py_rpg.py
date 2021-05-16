@@ -1,5 +1,5 @@
 import pytest
-from py_rpg import Character
+from app import Character
 
 
 class TestCharacter:
