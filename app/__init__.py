@@ -1,5 +1,5 @@
 class Character:
-    def __init__(self, max_health: int = 1000, level: int = 1, starting_health: int = None) -> None:
+    def __init__(self, name: str, max_health: int = 1000, level: int = 1, starting_health: int = None) -> None:
         self.__health: int = starting_health if starting_health else max_health
         self.__max_health: int = max_health
         self.__level: int = level

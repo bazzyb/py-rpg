@@ -4,12 +4,12 @@ from app import Character
 
 class TestCharacter:
     def test_character_instantiated(self):
-        player = Character()
+        player = Character("Test Player")
         assert player.get_health() == 1000
         assert player.get_level() == 1
 
     def test_character_instantiated_with_specified_params(self):
-        player = Character(max_health=2000, level=5)
+        player = Character("Test Player", max_health=2000, level=5)
         assert player.get_health() == 2000
         assert player.get_level() == 5
 
@@ -17,10 +17,10 @@ class TestCharacter:
 class TestAttacking:
     @pytest.fixture(autouse=True)
     def __prep_characters(self):
-        self.player = Character()
+        self.player = Character("Test Player")
 
-        self.opponent = Character()
-        self.injured_opponent = Character(max_health=100)
+        self.opponent = Character("Test Enemy")
+        self.injured_opponent = Character("Test Injured Enemy", max_health=100)
 
     def test_opponent_should_have_900_health_after_attack(self):
         self.player.attack(self.opponent)
@@ -40,9 +40,9 @@ class TestAttacking:
 class TestHealing:
     @pytest.fixture(autouse=True)
     def __prep_characters(self):
-        self.player = Character()
-        self.experienced_player = Character(max_health=3000, level=10)
-        self.injured_player = Character(starting_health=100)
+        self.player = Character("Test Player")
+        self.experienced_player = Character("Test Experienced Player", max_health=3000, level=10)
+        self.injured_player = Character("Test Injured Player", starting_health=100)
 
     def test_healing_should_increase_players_health(self):
         self.player.heal(self.injured_player)
