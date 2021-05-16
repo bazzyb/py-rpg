@@ -1,12 +1,22 @@
+from rich.console import Console
+
+console = Console()
+
+
 class Character:
     def __init__(self, name: str, max_health: int = 1000, level: int = 1, starting_health: int = None) -> None:
+        self.__name: str = name
         self.__health: int = starting_health if starting_health else max_health
         self.__max_health: int = max_health
         self.__level: int = level
         self.__alive: bool = True
 
     def __repr__(self):
-        return f"Health: {self.__health} | Alive: {self.__alive}"
+        return "Call [Character].info() instead of printing the class"
+
+    def info(self):
+        console.rule(f"{self.__name} Stats")
+        console.print(f"Health: {self.__health} | Alive: {self.__alive}")
 
     def get_level(self) -> int:
         return self.__level

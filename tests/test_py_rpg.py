@@ -52,4 +52,5 @@ class TestHealing:
         self.player.attack(self.injured_player)
         self.player.heal(self.injured_player)
         assert self.injured_player.get_health() == 0
-        assert self.injured_player.is_alive() == False
+        self.injured_player.info()
+        assert self.injured_player.is_alive() == True
