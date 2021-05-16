@@ -16,7 +16,7 @@ class TestCharacter:
 
 class TestCombat:
     @pytest.fixture(autouse=True)
-    def _prep_characters(self):
+    def __prep_characters(self):
         self.character = Character()
         self.experienced_character = Character(max_health=3000, level=10)
         self.injured_character = Character(max_health=100)

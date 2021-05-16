@@ -1,23 +1,23 @@
 class Character:
     def __init__(self, max_health: int = 1000, level: int = 1) -> None:
-        self.health: int = max_health
-        self.max_health: int = max_health
-        self.level: int = level
-        self.alive: bool = True
+        self.__health: int = max_health
+        self.__max_health: int = max_health
+        self.__level: int = level
+        self.__alive: bool = True
 
     def get_level(self) -> int:
-        return self.level
+        return self.__level
 
     def get_health(self) -> int:
-        return self.health
+        return self.__health
 
     def is_alive(self) -> bool:
-        return self.alive
+        return self.__alive
 
     def attack(self, enemy: "Character") -> None:
-        enemy._reduce_health(100)
+        enemy.__reduce_health(100)
 
-    def _reduce_health(self, reduce_by: int) -> None:
-        self.health = max(self.health - reduce_by, 0)
-        if self.health == 0:
-            self.alive = False
+    def __reduce_health(self, reduce_by: int) -> None:
+        self.__health = max(self.__health - reduce_by, 0)
+        if self.__health == 0:
+            self.__alive = False
