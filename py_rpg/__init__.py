@@ -9,3 +9,9 @@ class Character:
 
     def get_health(self) -> float:
         return self.health
+
+    def attack(self, enemy: "Character"):
+        enemy._reduce_health(100)
+
+    def _reduce_health(self, reduce_by):
+        self.health -= reduce_by
